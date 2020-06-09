@@ -1,5 +1,4 @@
 <?php
-
     require_once('blog.php');
     $blogs = $_POST;
 
