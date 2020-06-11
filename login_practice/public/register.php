@@ -1,10 +1,18 @@
 <?php
-
+session_start();
 require_once'../classes/UserLogic.php';
 //エラーメッセージ
   $err = [];
 
-//バリデーション
+  $token = filter_input(INPUT_POST,'csrf_token');
+  //トークンがない、もしくは一致しない場合、処理を中止
+  if(!isset($_SESSION['csrf_token']) || $token !== $_SESSION['csrf_token']){
+    exit('不正なリクエストです');
+  }
+
+  unset($_SESSION['csrf_token']);
+  
+//バリデーション 
 //ユーザーネームがPOSTで送られて来たら受け取れます。変数の値で返す
 //もしユーザーネームが空だったらfalseで返す
 if(!$username = filter_input(INPUT_POST,'username')){
