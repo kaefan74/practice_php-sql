@@ -1,5 +1,5 @@
 <?php
-  //データベースにサーバーに接続するためのファイル
+  //データベースをサーバーに接続するためのファイル
   require_once  'env.php';
   function connect(){
     $host = DB_HOST;
